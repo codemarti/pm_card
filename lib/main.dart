@@ -8,6 +8,7 @@ import 'package:fitibank_card/core/presentation/widgets/card_logo.dart';
 import 'package:fitibank_card/core/presentation/widgets/card_name.dart';
 import 'package:fitibank_card/core/presentation/widgets/card_number.dart';
 import 'package:fitibank_card/core/presentation/widgets/chip_and_color.dart';
+import 'package:fitibank_card/core/presentation/widgets/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -39,8 +40,9 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          backgroundColor: Colors.black,
           title: Text(title),
         ),
         body: Center(child: cardBody()));
@@ -63,39 +65,49 @@ Widget cardBody() {
 
   final UserModel userModel = UserModel.fromEntity(user);
   return Container(
-    height: 300,
+    height: 500,
     width: 500,
     padding: const EdgeInsets.all(13.0),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
-        color: const Color.fromARGB(255, 0, 13, 134)),
+        color: Color.fromARGB(255, 255, 255, 255),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.red,
+              spreadRadius: 2,
+              blurRadius: 4,
+              offset: Offset(0, 0))
+        ]),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
+        LoginPage() // comente todo del main y puse login page aqui
+
         // const CardLogo(),
-        Text(userModel.name, style: const TextStyle(color: Colors.white)),
-        Text(
-          cardModel.cardOwner,
-          style: const TextStyle(color: Colors.white),
-        ),
-        Text(
-          cardModel.cardDate,
-          style: const TextStyle(color: Colors.white),
-        ),
-        Text(
-          cardModel.cardNumber,
-          style: const TextStyle(color: Colors.white),
-        ),
-        Text(
-          cardModel.logo,
-          style: const TextStyle(color: Colors.white),
-        ),
+        // Text(userModel.name, style: const TextStyle(color: Colors.white)),
+        // Text(
+        //   cardModel.cardOwner,
+        //   style: const TextStyle(color: Colors.white),
+        // ),
+        // Text(
+        //   cardModel.cardDate,
+        //   style: const TextStyle(color: Colors.white),
+        // ),
+        // Text(
+        //   cardModel.cardNumber,
+        //   style: const TextStyle(color: Colors.white),
+        // ),
+        // Text(
+        //   cardModel.logo,
+        //   style: const TextStyle(color: Colors.white),
+        // ),
         // const CardName(),
         // const ChipAndColor(),
         // const CardNumber(),
         // const CardDate(),
         // const Cardholder(),
-        ElevatedButton(onPressed: () => {}, child: const Text("Button")),
+        // LoginPage(),
+        // ElevatedButton(onPressed: () => {}, child: const Text("Button")),
       ],
     ),
   );
@@ -117,4 +129,14 @@ Widget relleno() {
   return const Row(
     children: [Text("")],
   );
+}
+
+class Demo extends StatelessWidget {
+  final User user;
+  const Demo({super.key, required this.user});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(user.name);
+  }
 }
